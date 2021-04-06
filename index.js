@@ -1,3 +1,9 @@
+// Scroll to top on reload
+
+window.onbeforeunload = function () {
+    window.scrollTo(0,0);
+};
+
 // Select language dropdown
 const languageBtn = document.querySelector("#language-btn");
 const languageList = document.querySelector("#language-list");
@@ -18,7 +24,7 @@ burgerBtn.addEventListener("click", e => {
     burgerBtn.classList.toggle("burger-active");
 })
 
-// Hide dropdown when clicking outside button or menu
+// Hide dropdown or mobile menu when clicking outside button or menu
 document.addEventListener("mouseup", e => {
     if (!languageList.classList.contains("hidden")
         && !languageBtn.contains(e.target)
@@ -78,6 +84,18 @@ function fireCounters(counters) {
         update();
     })
 }
+
+// Fetch from RSS feed
+
+const RSS_URL = "https://www.lianatech.com/resources/blog.rss";
+
+fetch(RSS_URL)
+  .then(response => response.text())
+  .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+  .then(data => console.log(data))
+  .catch(error => {
+      console.log(error);
+  })
 
 // Helper functions
 
