@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mark Vicuna">
+    <meta name="description" content="Front-end coding assignment for Liana Technologies">
+    <title>Liana Assignment - Mark Vicuna</title>
+    <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="pic"></div>
+    <header id="sticky-header">
+        <nav id="upper-nav">
+            <div id="upper-nav-content" class="container">
+                <ul class="menu-list">
+                    <a href="#">
+                        <li>News</li>
+                    </a>
+                    <a href="#">
+                        <li>Intranet</li>
+                    </a>
+                </ul>
+                <div id="dropdown">
+                    <button type="menu" id="language-btn">
+                        <span>In English</span>
+                        <span>&#9662</span>
+                    </button>
+                    <ul id="language-list" class="hidden">
+                        <a href="#">
+                            <li>Auf Deutsch</li>
+                        </a>
+                        <a href="#">
+                            <li>En français</li>
+                        </a>
+                        <a href="#">
+                            <li>På Svenska</li>
+                        </a>
+                        <a href="#">
+                            <li>Suomeksi</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav id="main-nav">
+            <div id="main-nav-content" class="container">
+                <a href="index.html" id="home-link">
+                    <img src="/assets/logos/liana-logo.png" alt="Liana Technologies logo">
+                </a>
+                <button id="burger-btn">&#9776</button>
+                <div id="main-nav-menu">
+                    <ul class="menu-list">
+                        <a href="#">
+                            <li>Company</li>
+                        </a>
+                        <a href="#">
+                            <li>Products</li>
+                        </a>
+                        <a href="#">
+                            <li>Contact Us</li>
+                        </a>
+                    </ul>
+                    <form action="">
+                        <div id="search-field">
+                            <input type="text" placeholder="Search" class="input">
+                            <button type="submit" id="search-btn" class="btn-primary">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Software fueling digital marketing</h1>
+                <a href="#" class="btn btn-primary large">Learn more</a>
+            </div>
+        </section>
+        <section id="banners">
+            <div class="container">
+                <div id="banners-content">
+                    <div id="banner-group">
+                        <a href="#">
+                            <img src="/assets/images/banner-1.jpg" alt="Liana team in a project meeting"
+                                class="img-fill img-darken">
+                            <h3>Company</h3>
+                        </a>
+                        <a href="#">
+                            <img src="/assets/images/banner-2.jpg" alt="Liana booth at a convention"
+                                class="img-fill img-darken">
+                            <h3>Products</h3>
+                        </a>
+                        <a href="#">
+                            <img src="/assets/images/banner-3.jpg" alt="Liana employee working on a computer"
+                                class="img-fill img-darken">
+                            <h3>Contact Us</h3>
+                        </a>
+                    </div>
+                    <div id="statistic-group">
+                        <div class="statistic">
+                            <img src="/assets/icons/business-icon.png" alt="Luggage icon">
+                            <div class="statistic-text">
+                                <span class="counter" data-target="3000">0000</span>
+                                <p>Clients</p>
+                            </div>
+                        </div>
+                        <div class="statistic">
+                            <img src="/assets/icons/face-icon.png" alt="Person icon">
+                            <div class="statistic-text">
+                                <span class="counter" data-target="180">000</span>
+                                <p>Employees</p>
+                            </div>
+                        </div>
+                        <div class="statistic">
+                            <img src="/assets/icons/world-icon.png" alt="Globe icon">
+                            <div class="statistic-text">
+                                <span class="counter" data-target="10000">00000</span>
+                                <p>Daily users</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="latest-news">
+            <div class="container">
+                <h2>Latest News</h2>
+                <div id="news-group">
+                    <a href="#">
+                        <span>27.07.2016</span>
+                        <h3>Liana Technologies and Encode Solutions merge to create unique mobile solutions</h3>
+                    </a>
+                    <a href="#">
+                        <span>28.01.2016</span>
+                        <h3>From a local startup to a global player: Liana Technologies among the forerunners of digital
+                            marketing technology</h3>
+                    </a>
+                    <a href="#">
+                        <span>02.07.2015</span>
+                        <h3>Liana Technologies Hong Kong launched a series of digital marketing events in June</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="references">
+            <div class="container">
+                <h2>References</h2>
+                <div id="reference-group">
+                    <a href="#">
+                        <div class="reference-logo">
+                            <img src="/assets/logos/bosch-logo.png" alt="Bosch logo">
+                        </div>
+                        <div class="reference-text">
+                            <h3>Robert Bosch</h3>
+                            <p>Bosch is a multinational engineering and electronics company.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="reference-logo">
+                            <img src="/assets/logos/body-shop-logo.png" alt="The Body Shop logo">
+                        </div>
+                        <div class="reference-text">
+                            <h3>The Body Shop</h3>
+                            <p>The Body Shop is a global beauty brand and it has more than 3,000 stores in more than 60
+                                countries.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="reference-logo">
+                            <img src="/assets/logos/lapland-hotels-logo.png" alt="Lapland Hotels logo">
+                        </div>
+                        <div class="reference-text">
+                            <h3>Lapland Hotels</h3>
+                            <p>Lapland Hotels is the largest and the most diverse hotel chain in Lapland.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="reference-logo">
+                            <img src="/assets/logos/ikea-logo.png" alt="Ikea logo">
+                        </div>
+                        <div class="reference-text">
+                            <h3>IKEA</h3>
+                            <p>IKEA is a multinational furniture store.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="newsletter">
+            <div class="container">
+                <form id="newsletter-form" action="">
+                    <h2>Subscribe to our newsletter</h2>
+                    <p>Follow our story and get the latest promotional news about our products and events.</p>
+                    <div id="newsletter-fields">
+                        <input type="email" placeholder="Your email address" class="input large" required>
+                        <button type="submit" class="btn-primary large">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div id="footer-content">
+                <div id="footer-head">
+                    <h4>Liana Technologies</h4>
+                    <nav>
+                        <ul class="menu-list">
+                            <a href="#">
+                                <li>Company</li>
+                            </a>
+                            <a href="#">
+                                <li>Products</li>
+                            </a>
+                            <a href="#">
+                                <li>Contact us</li>
+                            </a>
+                            <a href="#">
+                                <li>News</li>
+                            </a>
+                            <a href="#">
+                                <li>Intranet</li>
+                            </a>
+                        </ul>
+                    </nav>
+                </div>
+                <div id="footer-contact">
+                    <div id="contact-info">
+                        <div>
+                            <h5>Sales and inquiries</h5>
+                            <p>Email: sales@lianatech.com</p>
+                            <p>Phone: +358 10 387 7053</p>
+                        </div>
+                        <a href="#" class="btn btn-primary">Contact us</a>
+                    </div>
+                    <div id="social-icons">
+                        <a href="#">
+                            <img src="assets/icons/facebook-icon.png" alt="Facebook icon">
+                        </a>
+                        <a href="#">
+                            <img src="assets/icons/twitter-icon.png" alt="Twitter icon">
+                        </a>
+                        <a href="#">
+                            <img src="assets/icons/linkedin-icon.png" alt="LinkedIn icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+
+</html>
