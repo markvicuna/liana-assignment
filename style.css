@@ -23,18 +23,6 @@
 
 /* liana highlights */
 
-/* html::after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background-image: url("assets/images/render.png");
-    z-index: 99;
-    top: 0;
-    left: 0;
-    opacity: 0.2;
-} */
-
 ::selection {
     background: var(--liana-green);
     color: var(--white);
@@ -250,7 +238,7 @@ section h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(0deg, var(--off-black-overlay), var(--off-black-overlay)), url("/assets/images/hero.jpg");
+    background: linear-gradient(0deg, var(--off-black-overlay), var(--off-black-overlay)), url("assets/images/hero.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -522,10 +510,6 @@ footer {
         margin: 0 8%;
     }
 
-    .statistic {
-        /* margin-bottom: 10px; */
-    }
-
     #reference-group {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -686,14 +670,3 @@ footer {
         margin-top: 50px;
     }
 }
-
-/* NOTES
-  
-  for #upper-nav-content on mobile:
-      justify-content: spacebetween
-  
-  decrease width of the language button
-  
-  decrease padding of the container
-  
-  END */
