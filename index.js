@@ -78,20 +78,21 @@ function fireCounters(counters) {
 }
 
 // Fetch and load from RSS feed
+
 const newsGroup = document.querySelector("#news-group")
 const loading = document.querySelector("#loading");
 // NOTE: proxy was set up with nodeJS and deployed to heroku to bypass CORS restrictions
 const proxyURL = "https://secure-cove-98237.herokuapp.com/";
 
-loadPlaceholders();
+// loadPlaceholders();
 
-// fetch(proxyURL)
-//   .then(response => response.json())
-//   .then(data => {loadLatestNews(data)})
-//   .catch(error => {
-//       console.log(error);
-//       loadPlaceholders();
-//   })
+fetch(proxyURL)
+  .then(response => response.json())
+  .then(data => {loadLatestNews(data)})
+  .catch(error => {
+      console.log(error);
+      loadPlaceholders();
+  })
 
 function loadLatestNews(data) {
     ;
@@ -174,6 +175,25 @@ window.addEventListener("scroll", () => {
     lastScroll = currentScroll;
     menusActive() ? closeMenus() : null;
 });
+
+// Subscription notification 
+
+const newsletterForm = document.querySelector("#newsletter-form");
+const notification = document.querySelector("#notification");
+
+newsletterForm.addEventListener("submit", e => {
+    e.preventDefault();
+    console.log(e);
+    newsletterForm.reset();
+    notification.innerHTML = "Thank you for subscribing to our newsletter &#10084;&#65039;";
+    notification.style.opacity = "0.9";
+    notification.style.transform = "none";
+    setTimeout(() => {
+        notification.style.opacity = "0";
+        notification.style.transform = "translate3d(0, -101%, 0)";
+    }, 3000);
+})
+
 
 // Helper functions
 
