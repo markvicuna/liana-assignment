@@ -154,9 +154,8 @@ section h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("../assets/images/hero.jpg");
-    /* background: linear-gradient(0deg, var(--off-black-overlay), var(--off-black-overlay)), url("hero.jpg"); */
-    background-attachment: fixed;
+    background: linear-gradient(0deg, var(--off-black-overlay), var(--off-black-overlay)), url("../assets/images/hero.jpg");
+    /* background-attachment: fixed; */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -362,11 +361,11 @@ section h2 {
     }
 }
 
-.scroll-down  {
+.scroll-down {
     transform: translate3d(0, -101%, 0);
 }
 
-.scroll-up  {
+.scroll-up {
     transform: none;
 }
 
@@ -496,5 +495,17 @@ section h2 {
         margin-right: 0;
         margin-bottom: 10px;
         text-align: center;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    #hero {
+        background-attachment: scroll
+    }
+}
+
+@supports not (-webkit-touch-callout: none) {
+    #hero {
+        background-attachment: fixed;
     }
 }
