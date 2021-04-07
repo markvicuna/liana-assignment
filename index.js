@@ -17,7 +17,6 @@ const burgerBtn = document.querySelector("#burger-btn");
 const mainNavMenu = document.querySelector("#main-nav-menu");
 
 burgerBtn.addEventListener("click", e => {
-    console.log("click");
     mainNavMenu.classList.toggle("menu-open");
     burgerBtn.classList.toggle("burger-active");
 })
@@ -79,11 +78,10 @@ function fireCounters(counters) {
 
 // Fetch and load from RSS feed
 
-const newsGroup = document.querySelector("#news-group")
+const newsGroup = document.querySelector("#news-group");
 const loading = document.querySelector("#loading");
-// NOTE: proxy was set up with nodeJS and deployed to heroku to bypass CORS restrictions
+// NOTE: a proxy was set up with nodeJS and deployed to heroku to bypass CORS restrictions
 const proxyURL = "https://secure-cove-98237.herokuapp.com/";
-
 
 fetch(proxyURL)
   .then(response => response.json())
@@ -94,9 +92,7 @@ fetch(proxyURL)
   })
 
 function loadLatestNews(data) {
-    ;
     const numberOfNews = 3;
-    console.log(data.items);
     if (data.items) {
         loading.innerHTML = "";
         for (let i = 0; i < numberOfNews; i++) {
@@ -119,6 +115,7 @@ function loadLatestNews(data) {
     }
 }
 
+// load placeholder content in case fetch fails
 function loadPlaceholders() {
     news = [
         {
@@ -150,26 +147,26 @@ function loadPlaceholders() {
 // Sticky header hide and show
 // Following: https://webdesign.tutsplus.com/tutorials/how-to-hide-reveal-a-sticky-header-on-scroll-with-javascript--cms-33756
 
-const body = document.body;
 const header = document.querySelector("#sticky-header");
 const scrollUp = "scroll-up";
 const scrollDown = "scroll-down";
+const minHeightOffset = 50;
 let lastScroll = 0;
 
 window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset;
-    if (currentScroll <= 50) {
-        body.classList.remove(scrollUp);
+    if (currentScroll <= minHeightOffset) {
+        header.classList.remove(scrollUp);
         return;
     }
-    if (currentScroll > lastScroll && !body.classList.contains(scrollDown)) {
+    if (currentScroll > lastScroll && !header.classList.contains(scrollDown)) {
         // down
-        body.classList.remove(scrollUp);
-        body.classList.add(scrollDown);
-    } else if (currentScroll < lastScroll && body.classList.contains(scrollDown)) {
+        header.classList.remove(scrollUp);
+        header.classList.add(scrollDown);
+    } else if (currentScroll < lastScroll && header.classList.contains(scrollDown)) {
         // up
-        body.classList.remove(scrollDown);
-        body.classList.add(scrollUp);
+        header.classList.remove(scrollDown);
+        header.classList.add(scrollUp);
     }
     lastScroll = currentScroll;
     menusActive() ? closeMenus() : null;
@@ -182,7 +179,6 @@ const notification = document.querySelector("#notification");
 
 newsletterForm.addEventListener("submit", e => {
     e.preventDefault();
-    console.log(e);
     newsletterForm.reset();
     notification.innerHTML = "Thank you for subscribing! &#10084;&#65039;";
     notification.style.opacity = "0.9";
@@ -190,9 +186,9 @@ newsletterForm.addEventListener("submit", e => {
     setTimeout(() => {
         notification.style.opacity = "0";
         notification.style.transform = "translate3d(0, -101%, 0)";
+        notification.innerHTML = "";
     }, 3000);
 })
-
 
 // Helper functions
 
