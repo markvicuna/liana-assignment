@@ -497,6 +497,8 @@ section h2 {
     }
 }
 
+/* Disable fixed background on devices that don't support it */
+
 @supports ( -webkit-touch-callout: none) {
     #hero {
         background-attachment: scroll
