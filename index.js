@@ -1,7 +1,6 @@
 // Scroll to top on reload
-
 window.onbeforeunload = function () {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 };
 
 // Select language dropdown
@@ -14,7 +13,6 @@ languageBtn.addEventListener("click", e => {
 })
 
 // Mobile menu trigger
-
 const burgerBtn = document.querySelector("#burger-btn");
 const mainNavMenu = document.querySelector("#main-nav-menu");
 
@@ -31,7 +29,7 @@ document.addEventListener("mouseup", e => {
         && !languageList.contains(e.target)
         && languageBtn !== e.target
         && languageList !== e.target) {
-            languageList.classList.add("hidden");
+        languageList.classList.add("hidden");
     }
 
     if (mainNavMenu.classList.contains("menu-open")
@@ -39,16 +37,10 @@ document.addEventListener("mouseup", e => {
         && !burgerBtn.contains(e.target)
         && mainNavMenu !== e.target
         && burgerBtn !== e.target) {
-            mainNavMenu.classList.remove("menu-open");
-            burgerBtn.classList.remove("burger-active");
+        mainNavMenu.classList.remove("menu-open");
+        burgerBtn.classList.remove("burger-active");
     }
 })
-
-// Sticky header hide and show
-const scrollUp = "scroll-up";
-const scrollDown = "scroll-down";
-let lastScroll = 0;
-
 
 // Statistic counter + scrolling observer
 
@@ -56,7 +48,7 @@ const statisticGroup = document.querySelector("#statistic-group .statistic");
 const counters = document.querySelectorAll(".counter");
 const speed = 100;
 
-const observer = new IntersectionObserver((entries, observer) => {
+const statisticObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             fireCounters(counters);
@@ -65,7 +57,7 @@ const observer = new IntersectionObserver((entries, observer) => {
     })
 }, { root: null, rootMargin: '100px', threshold: 1.0 });
 
-observer.observe(statisticGroup);
+statisticObserver.observe(statisticGroup);
 
 function fireCounters(counters) {
     counters.forEach(counter => {
@@ -91,15 +83,18 @@ const loading = document.querySelector("#loading");
 // NOTE: proxy was set up with nodeJS and deployed to heroku to bypass CORS restrictions
 const proxyURL = "https://secure-cove-98237.herokuapp.com/";
 
-fetch(proxyURL)
-  .then(response => response.json())
-  .then(data => {loadLatestNews(data)})
-  .catch(error => {
-      console.log(error);
-      loadPlaceholders();
-  })
+loadPlaceholders();
 
-function loadLatestNews(data){;
+// fetch(proxyURL)
+//   .then(response => response.json())
+//   .then(data => {loadLatestNews(data)})
+//   .catch(error => {
+//       console.log(error);
+//       loadPlaceholders();
+//   })
+
+function loadLatestNews(data) {
+    ;
     const numberOfNews = 3;
     console.log(data.items);
     if (data.items) {
@@ -108,7 +103,7 @@ function loadLatestNews(data){;
             const title = data.items[i].title;
             const date = formatDate(new Date(data.items[i].pubDate));
             const link = data.items[i].link;
-            
+
             const a = document.createElement("a");
             const span = document.createElement("span");
             const h3 = document.createElement("h3");
@@ -152,6 +147,34 @@ function loadPlaceholders() {
     loading.innerHTML = "<span>Failed to load latest news &#128557 – loaded placeholder news instead.</span>";
 }
 
+// Sticky header hide and show
+// Following: https://webdesign.tutsplus.com/tutorials/how-to-hide-reveal-a-sticky-header-on-scroll-with-javascript--cms-33756
+
+const body = document.body;
+const header = document.querySelector("#sticky-header");
+const scrollUp = "scroll-up";
+const scrollDown = "scroll-down";
+let lastScroll = 0;
+
+window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+    if (currentScroll <= 50) {
+        body.classList.remove(scrollUp);
+        return;
+    }
+    if (currentScroll > lastScroll && !body.classList.contains(scrollDown)) {
+        // down
+        body.classList.remove(scrollUp);
+        body.classList.add(scrollDown);
+    } else if (currentScroll < lastScroll && body.classList.contains(scrollDown)) {
+        // up
+        body.classList.remove(scrollDown);
+        body.classList.add(scrollUp);
+    }
+    lastScroll = currentScroll;
+    menusActive() ? closeMenus() : null;
+});
+
 // Helper functions
 
 function padValue(value, target) {
@@ -163,4 +186,17 @@ function formatDate(date) {
     const str = date.toISOString().split("T")[0];
     const arr = str.split("-").reverse();
     return arr.join(".");
+}
+
+function menusActive() {
+    const menusActive = mainNavMenu.classList.contains("menu-open") ||
+                        burgerBtn.classList.contains("burger-active") ||
+                        !languageList.classList.contains("hidden");
+    return menusActive;
+}
+
+function closeMenus() {
+    mainNavMenu.classList.remove("menu-open");
+    burgerBtn.classList.remove("burger-active");
+    languageList.classList.add("hidden");
 }

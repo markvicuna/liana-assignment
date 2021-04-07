@@ -74,10 +74,6 @@ body {
     font-size: 16px;
 }
 
-main {
-    margin-top: 165px;
-}
-
 section {
     text-align: center;
     padding: 50px 0;
@@ -102,6 +98,7 @@ section h2 {
     width: 100%;
     z-index: 1;
     top: 0;
+    transition: transform 0.4s;
 }
 
 .input {
@@ -231,7 +228,8 @@ section h2 {
 }
 
 #hero {
-    height: 420px;
+    height: 550px;
+    padding-top: 200px;
     position: relative;
     color: var(--white);
     display: flex;
@@ -516,6 +514,14 @@ footer {
     }
 }
 
+.scroll-down #sticky-header {
+    transform: translate3d(0, -101%, 0);
+}
+
+.scroll-up #sticky-header {
+    transform: none;
+}
+
 /* Tablet landscape */
 
 @media only screen and (max-width: 1200px) {
@@ -560,9 +566,6 @@ footer {
     }
     .menu-open {
         height: 390px !important;
-    }
-    main {
-        margin-top: 148px;
     }
     #main-nav-menu {
         position: fixed;
@@ -631,9 +634,6 @@ footer {
     }
     #upper-nav-content {
         justify-content: space-between;
-    }
-    main {
-        margin-top: 134px;
     }
     #main-nav {
         padding: 20px 0;
