@@ -84,6 +84,7 @@ const loading = document.querySelector("#loading");
 // NOTE: proxy was set up with nodeJS and deployed to heroku to bypass CORS restrictions
 const proxyURL = "https://secure-cove-98237.herokuapp.com/";
 
+
 fetch(proxyURL)
   .then(response => response.json())
   .then(data => {loadLatestNews(data)})
