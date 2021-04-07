@@ -85,21 +85,82 @@ function fireCounters(counters) {
     })
 }
 
-// Fetch from RSS feed
+// Fetch and load from RSS feed
+const newsGroup = document.querySelector("#news-group")
+const loading = document.querySelector("#loading");
+// NOTE: proxy was set up with nodeJS and deployed to heroku to bypass CORS restrictions
+const proxyURL = "https://secure-cove-98237.herokuapp.com/";
 
-const RSS_URL = "https://www.lianatech.com/resources/blog.rss";
-
-fetch(RSS_URL)
-  .then(response => response.text())
-  .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-  .then(data => console.log(data))
+fetch(proxyURL)
+  .then(response => response.json())
+  .then(data => {loadLatestNews(data)})
   .catch(error => {
       console.log(error);
+      loadPlaceholders();
   })
+
+function loadLatestNews(data){;
+    const numberOfNews = 3;
+    console.log(data.items);
+    if (data.items) {
+        loading.innerHTML = "";
+        for (let i = 0; i < numberOfNews; i++) {
+            const title = data.items[i].title;
+            const date = formatDate(new Date(data.items[i].pubDate));
+            const link = data.items[i].link;
+            
+            const a = document.createElement("a");
+            const span = document.createElement("span");
+            const h3 = document.createElement("h3");
+
+            a.href = link;
+            a.target = "_blank";
+            span.textContent = date;
+            h3.textContent = title;
+
+            a.append(span, h3);
+            newsGroup.appendChild(a);
+        }
+    }
+}
+
+function loadPlaceholders() {
+    news = [
+        {
+            date: "27.07.2016",
+            title: "Liana Technologies and Encode Solutions merge to create unique mobile solutions"
+        },
+        {
+            date: "28.01.2016",
+            title: "From a local startup to a global player: Liana Technologies among the forerunners of digital marketing technology"
+        },
+        {
+            date: "02.07.2015",
+            title: "Liana Technologies Hong Kong launched a series of digital marketing events in June"
+        },
+    ]
+    let HTMLstring = ""
+    news.forEach(item => {
+        HTMLstring += `
+            <a  href="#">
+                <span>${news[0].date}</span>
+                <h3>${news[0].title}</h3>
+            </a>
+        `
+    })
+    newsGroup.innerHTML = HTMLstring;
+    loading.innerHTML = "<span>Failed to load latest news &#128557 – loaded placeholder news instead.</span>";
+}
 
 // Helper functions
 
 function padValue(value, target) {
     const targetLength = target.toString().length;
     return value.toString().padStart(targetLength, "0");
+}
+
+function formatDate(date) {
+    const str = date.toISOString().split("T")[0];
+    const arr = str.split("-").reverse();
+    return arr.join(".");
 }
